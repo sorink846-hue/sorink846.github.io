@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Carta Secreta 💗</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Georgia, serif;
+    background: linear-gradient(135deg,#f8cdda,#f5a3c7,#fff1a8);
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+/* LOGIN */
+#login{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.login-box{
+    background:#fff5f8;
+    padding:30px;
+    border-radius:20px;
+    width:300px;
+    text-align:center;
+    box-shadow:0 15px 30px rgba(0,0,0,.2);
+}
+
+.login-box h2{ color:#d63384; }
+
+.login-box input{
+    width:90%;
+    padding:10px;
+    margin:10px 0;
+    border-radius:10px;
+    border:1px solid #f2a6c2;
+}
+
+.login-box button{
+    background:#f06292;
+    color:white;
+    border:none;
+    padding:10px 25px;
+    border-radius:20px;
+    cursor:pointer;
+}
+
+/* CONTENIDO */
+#content{ display:none; padding:40px 15px; }
+
+/* HOJA */
+.paper{
+    background:#fff9dc;
+    max-width:900px;
+    margin:auto;
+    padding:40px;
+    border-radius:15px;
+    box-shadow: inset 0 0 25px rgba(0,0,0,.1),
+                0 10px 30px rgba(0,0,0,.25);
+}
+
+/* TÍTULO */
+.paper-content h1{
+    text-align:center;
+    color:#d63384;
+    animation: latido 2.5s infinite;
+}
+
+@keyframes latido{
+    0%,100%{ transform:scale(1); }
+    50%{ transform:scale(1.05); }
+}
+
+.paper-content{
+    color:#5a3b3b;
+    font-size:18px;
+    line-height:1.8;
+}
+
+/* TEXTO */
+.typing{
+    white-space:pre-wrap;
+    border-right:3px solid #d63384;
+    padding-right:5px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink{
+    50%{ border-color: transparent; }
+}
+
+/* CORAZONES */
+.heart{
+    position:fixed;
+    bottom:-20px;
+    font-size:22px;
+    animation:subir 6s linear infinite;
+}
+
+@keyframes subir{
+    to{ transform:translateY(-120vh); opacity:0; }
+}
+
+/* ===== CARRUSEL ===== */
+.carrusel-container{
+    position:relative;
+    max-width:700px;
+    margin:50px auto 0;
+    overflow:hidden;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
+}
+
+.carrusel{
+    display:flex;
+    transition:transform .6s ease;
+}
+
+.carrusel img{
+    width:100%;
+    flex-shrink:0;
+    height:420px;
+    object-fit:cover;
+}
+
+.carrusel-btn{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:rgba(255,255,255,.75);
+    border:none;
+    font-size:28px;
+    padding:5px 12px;
+    cursor:pointer;
+    border-radius:50%;
+}
+
+.prev{ left:10px; }
+.next{ right:10px; }
+</style>
+</head>
+
+<body>
+
+<div id="login">
+    <div class="login-box">
+        <h2>💗 Acceso Secreto 💗</h2>
+        <input id="user" placeholder="Usuario">
+        <input id="pass" type="password" placeholder="Contraseña">
+        <button onclick="entrar()">Entrar</button>
+        <p id="error" style="color:red"></p>
+    </div>
+</div>
+
+<div id="content">
+    <div class="paper">
+        <div class="paper-content">
+
+<h1>💗💗 Feliz San Valentín mi amorcito precioso 💗💗</h1>
+
+<p id="texto" class="typing"></p>
+
+<p style="text-align:center; margin-top:30px">
+💗💗💗💗💗💗💗💗💗💗💗💗💗💗💗💗💗💗💗💗
+</p>
+
+<!-- CARRUSEL -->
+<div class="carrusel-container">
+    <div class="carrusel" id="carrusel">
+        <img src="foto1.jpeg">
+        <img src="foto2.jpeg">
+        <img src="foto3.jpeg">
+        <img src="foto4.jpeg">
+        <img src="foto5.jpeg">
+    </div>
+
+    <button class="carrusel-btn prev" onclick="mover(-1)">❮</button>
+    <button class="carrusel-btn next" onclick="mover(1)">❯</button>
+</div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+const carta = `
+Te amo mucho mi corazón, me siento muy emocionada porque es el segundo que paso a tu lado, pero a la vez me pongo a pensar que ya no somos los mismos de hace un año, lo cual me hace sentir feliz; quizás el proceso no puede ser tan agradable, pero es lo que se necesita para poder crecer y amarnos mutuamente como lo merecemos.
+
+Te agradezco tu disposición de cambiar las cosas que no me gustan, de verdad me haces sentir muy amada y es algo que siempre te voy a agradecer. Nunca cambies ese aspecto de ti porque me encanta como no tienes idea.
+
+Amo la forma en la que demuestras tus sentimientos, tu sensibilidad y tu forma tan bonita de ser. Eres lo más hermoso que pude haber tenido.
+
+Eres el amor de toda mi alma, siempre oraré por nosotros, para que Dios bendiga nuestra relación y nuestra vida.
+
+Atte. tu novia que te ama mucho,
+Arcereidy 🥹
+`;
+
+let i = 0;
+let index = 0;
+
+function escribir(){
+    if(i < carta.length){
+        texto.textContent += carta.charAt(i);
+        i++;
+        setTimeout(escribir, 35);
+    }
+}
+
+function entrar(){
+    if(user.value==="gabriel" && pass.value==="01112024"){
+        login.style.display="none";
+        content.style.display="block";
+        corazones();
+        escribir();
+    }else{
+        error.textContent="Usuario o contraseña incorrectos 💔";
+    }
+}
+
+function corazones(){
+    setInterval(()=>{
+        let h=document.createElement("div");
+        h.className="heart";
+        h.innerHTML="💗";
+        h.style.left=Math.random()*100+"vw";
+        document.body.appendChild(h);
+        setTimeout(()=>h.remove(),6000);
+    },300);
+}
+
+function mover(dir){
+    const carrusel=document.getElementById("carrusel");
+    const total=carrusel.children.length;
+    index+=dir;
+    if(index<0) index=total-1;
+    if(index>=total) index=0;
+    carrusel.style.transform=`translateX(-${index*100}%)`;
+}
+
+setInterval(()=>mover(1),4500);
+</script>
+
+</body>
+</html>
